@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pill, Plus, Bell, Check } from 'lucide-react';
+import { Pill, Plus, Bell, Check, Clock3 } from 'lucide-react';
 
 function SupplyCheck() {
   const [medications, setMedications] = useState([
@@ -25,12 +25,19 @@ function SupplyCheck() {
 
   return (
     <div className="space-y-6 max-w-2xl">
-      <div className="card">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="glass-panel card bg-gradient-to-r from-navy-900/80 via-navy-800/80 to-navy-800/60 border border-green-500/20">
+        <div className="flex items-center gap-3 mb-3">
           <Pill className="w-6 h-6 text-green-400" />
-          <h2 className="text-xl font-bold text-white">Medication Tracker</h2>
+          <div>
+            <h2 className="text-xl font-bold text-white">Medication Tracker</h2>
+            <p className="text-gray-400 text-sm">Keep your medical supplies in check. Never miss a dose.</p>
+          </div>
         </div>
-        <p className="text-gray-400 text-sm">Keep your medical supplies in check. Never miss a dose.</p>
+        <div className="flex gap-2 text-xs text-gray-500 flex-wrap">
+          <span className="range-chip">Smart reminders</span>
+          <span className="range-chip">Adherence radar</span>
+          <span className="range-chip">Private to your device</span>
+        </div>
       </div>
 
       <div className="card">
@@ -50,28 +57,34 @@ function SupplyCheck() {
         </div>
       </div>
 
-      <div className="card">
+      <div className="glass-panel card bg-gradient-to-br from-navy-900/70 via-navy-800/70 to-navy-800/60 border border-navy-700/70">
         <h3 className="font-semibold text-white mb-4">Medications</h3>
         <div className="space-y-2 mb-4">
           {medications.map(med => (
-            <div key={med.id} className={`flex items-center justify-between p-3 rounded-lg ${med.taken ? 'bg-green-900/20 border border-green-700/30' : 'bg-navy-700'}`}>
+            <div key={med.id} className={`flex items-center justify-between p-3 rounded-lg border ${med.taken ? 'bg-green-900/20 border-green-700/40' : 'bg-navy-800/70 border-navy-700/70'}`}>
               <div className="flex items-center gap-3">
-                <button onClick={() => toggleTaken(med.id)} className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${med.taken ? 'bg-green-500 border-green-500' : 'border-gray-500'}`}>
+                <button onClick={() => toggleTaken(med.id)} className={`w-6 h-6 rounded-full border-2 flex items-center justify-center ${med.taken ? 'bg-green-500 border-green-500' : 'border-gray-500 hover:border-teal-400'}`}>
                   {med.taken && <Check className="w-4 h-4 text-white" />}
                 </button>
                 <div>
                   <p className={`font-medium ${med.taken ? 'text-gray-400 line-through' : 'text-white'}`}>{med.name}</p>
-                  <p className="text-xs text-gray-500">{med.time}</p>
+                  <p className="text-xs text-gray-500 flex items-center gap-1"><Clock3 className="w-3 h-3" /> {med.time}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        <form onSubmit={addMedication} className="flex gap-2">
-          <input type="text" className="input-field flex-1" placeholder="Medication name" value={newMed.name} onChange={(e) => setNewMed({...newMed, name: e.target.value})} />
-          <input type="time" className="input-field w-32" value={newMed.time} onChange={(e) => setNewMed({...newMed, time: e.target.value})} />
-          <button type="submit" className="btn-primary px-4"><Plus className="w-5 h-5" /></button>
+        <form onSubmit={addMedication} className="grid grid-cols-1 sm:grid-cols-[1fr_auto_auto] gap-3 items-center">
+          <div className="input-tile">
+            <label className="text-sm text-gray-300">Medication name</label>
+            <input type="text" className="input-ghost" placeholder="Vitamin D" value={newMed.name} onChange={(e) => setNewMed({...newMed, name: e.target.value})} />
+          </div>
+          <div className="input-tile">
+            <label className="text-sm text-gray-300">Time</label>
+            <input type="time" className="input-ghost" value={newMed.time} onChange={(e) => setNewMed({...newMed, time: e.target.value})} />
+          </div>
+          <button type="submit" className="btn-primary px-4 h-full" aria-label="Add medication"><Plus className="w-5 h-5" /></button>
         </form>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Brain, Smile, Frown, Meh } from 'lucide-react';
+import { Brain, Smile, Frown, Meh, Sparkles } from 'lucide-react';
 
 function MindCompass() {
   const [text, setText] = useState('');
@@ -25,19 +25,35 @@ function MindCompass() {
 
   return (
     <div className="space-y-6 max-w-2xl">
-      <div className="card">
-        <div className="flex items-center gap-3 mb-4">
+      <div className="glass-panel card bg-gradient-to-r from-navy-900/80 via-navy-800/80 to-navy-800/60 border border-purple-500/20">
+        <div className="flex items-center gap-3 mb-3">
           <Brain className="w-6 h-6 text-purple-400" />
-          <h2 className="text-xl font-bold text-white">Mental Health Monitor</h2>
+          <div>
+            <h2 className="text-xl font-bold text-white">Mental Health Monitor</h2>
+            <p className="text-gray-400 text-sm">Share your thoughts and feelings. We'll help navigate your emotional waters.</p>
+          </div>
         </div>
-        <p className="text-gray-400 text-sm">Share your thoughts and feelings. We'll help navigate your emotional waters.</p>
+        <div className="flex gap-2 text-xs text-gray-500 flex-wrap">
+          <span className="range-chip">Zero-judgment zone</span>
+          <span className="range-chip">Instant mood read</span>
+          <span className="range-chip">Feelings stay local</span>
+        </div>
       </div>
 
-      <form onSubmit={handleAnalyze} className="card space-y-4">
-        <div>
-          <label className="block text-sm text-gray-400 mb-2">How are you feeling today?</label>
+      <form onSubmit={handleAnalyze} className="glass-panel card space-y-4 bg-gradient-to-br from-navy-900/70 via-navy-800/70 to-navy-800/60 border border-navy-700/70">
+        <div className="input-tile">
+          <div className="flex items-center justify-between mb-2">
+            <div className="flex items-center gap-3">
+              <span className="icon-pill"><Sparkles className="w-5 h-5" /></span>
+              <div>
+                <p className="text-sm text-gray-300">How are you feeling today?</p>
+                <p className="text-xs text-gray-500">Write a few sentences</p>
+              </div>
+            </div>
+            <span className="range-chip">2-5 lines</span>
+          </div>
           <textarea 
-            className="input-field min-h-[120px] resize-none" 
+            className="input-ghost min-h-[140px] resize-none" 
             placeholder="I've been feeling a bit overwhelmed with work lately, but I'm trying to stay positive..."
             value={text}
             onChange={(e) => setText(e.target.value)}

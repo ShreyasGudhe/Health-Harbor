@@ -104,7 +104,7 @@ function CaptainsLog() {
       </div>
 
       {/* New Entry Form */}
-      <form onSubmit={handleSubmit} className="card space-y-4">
+      <form onSubmit={handleSubmit} className="glass-panel card space-y-5 bg-gradient-to-br from-navy-900/70 via-navy-800/70 to-navy-800/60 border border-navy-700/70">
         <h3 className="font-semibold text-white flex items-center gap-2">
           <Plus className="w-5 h-5" /> New Journal Entry
         </h3>
@@ -132,10 +132,13 @@ function CaptainsLog() {
         </div>
 
         {/* Journal Text */}
-        <div>
-          <label className="block text-sm text-gray-400 mb-2">What's on your mind?</label>
+        <div className="input-tile">
+          <div className="flex items-center justify-between mb-2">
+            <div className="text-sm text-gray-300">What's on your mind?</div>
+            <span className="range-chip">2-6 lines</span>
+          </div>
           <textarea
-            className="input-field min-h-[150px] resize-none"
+            className="input-ghost min-h-[160px] resize-none"
             placeholder="Write about your day, thoughts, feelings, gratitude, goals..."
             value={form.journal_text}
             onChange={(e) => setForm({ ...form, journal_text: e.target.value })}
@@ -143,9 +146,9 @@ function CaptainsLog() {
           />
         </div>
 
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
           <span className="text-sm text-gray-500">{form.journal_text.split(/\s+/).filter(Boolean).length} words</span>
-          <button type="submit" className="btn-primary" disabled={loading || !form.journal_text.trim()}>
+          <button type="submit" className="btn-primary w-full sm:w-auto px-6" disabled={loading || !form.journal_text.trim()}>
             {loading ? 'Saving...' : '📝 Save Entry'}
           </button>
         </div>

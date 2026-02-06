@@ -130,15 +130,18 @@ function TreasureLedger() {
       )}
 
       {/* Add Transaction Form */}
-      <form onSubmit={handleSubmit} className="card space-y-4">
-        <h3 className="font-semibold text-white flex items-center gap-2">
+      <form onSubmit={handleSubmit} className="glass-panel card space-y-5 bg-gradient-to-br from-navy-900/70 via-navy-800/70 to-navy-800/60 border border-navy-700/70">
+        <div className="flex items-center gap-2 text-white font-semibold">
           <Plus className="w-5 h-5" /> Add Transaction
-        </h3>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <div>
-            <label className="block text-sm text-gray-400 mb-1">Type</label>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div className="input-tile">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-300">Type</div>
+              <span className="range-chip">Income/Expense</span>
+            </div>
             <select 
-              className="input-field" 
+              className="input-ghost" 
               value={form.type} 
               onChange={(e) => setForm({...form, type: e.target.value, category: e.target.value === 'income' ? 'salary' : 'food'})}
             >
@@ -146,22 +149,30 @@ function TreasureLedger() {
               <option value="income">Income</option>
             </select>
           </div>
-          <div>
-            <label className="block text-sm text-gray-400 mb-1">Amount ($)</label>
+
+          <div className="input-tile">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-300">Amount</div>
+              <span className="range-chip">$</span>
+            </div>
             <input 
               type="number" 
               step="0.01" 
-              className="input-field" 
+              className="input-ghost" 
               placeholder="0.00"
               value={form.amount}
               onChange={(e) => setForm({...form, amount: e.target.value})}
               required
             />
           </div>
-          <div>
-            <label className="block text-sm text-gray-400 mb-1">Category</label>
+
+          <div className="input-tile">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-300">Category</div>
+              <span className="range-chip">Smart tags</span>
+            </div>
             <select 
-              className="input-field" 
+              className="input-ghost" 
               value={form.category} 
               onChange={(e) => setForm({...form, category: e.target.value})}
             >
@@ -170,46 +181,53 @@ function TreasureLedger() {
               ))}
             </select>
           </div>
-          <div>
-            <label className="block text-sm text-gray-400 mb-1">Description</label>
+
+          <div className="input-tile">
+            <div className="flex items-center justify-between">
+              <div className="text-sm text-gray-300">Description</div>
+              <span className="range-chip">Optional</span>
+            </div>
             <input 
               type="text" 
-              className="input-field" 
+              className="input-ghost" 
               placeholder="Optional note"
               value={form.description}
               onChange={(e) => setForm({...form, description: e.target.value})}
             />
           </div>
         </div>
-        <button type="submit" className="btn-primary" disabled={loading}>
-          {loading ? 'Adding...' : '💰 Add Transaction'}
-        </button>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <p className="text-sm text-gray-500">Track type, amount, category, and notes in one clean swoop.</p>
+          <button type="submit" className="btn-primary w-full sm:w-auto px-6" disabled={loading}>
+            {loading ? 'Adding...' : '💰 Add Transaction'}
+          </button>
+        </div>
       </form>
 
       {/* Budget Setting */}
-      <div className="card">
-        <div className="flex items-center justify-between">
+      <div className="glass-panel card bg-gradient-to-br from-navy-900/70 via-navy-800/70 to-navy-800/60 border border-teal-500/20">
+        <div className="flex items-center justify-between gap-3 flex-wrap">
           <div>
             <h3 className="font-semibold text-white">Monthly Budget</h3>
             <p className="text-sm text-gray-400">Set your spending limit</p>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-gray-400">$</span>
+          <div className="input-tile w-full sm:w-auto">
+            <label className="text-sm text-gray-300">Budget ($)</label>
             <input 
               type="number" 
-              className="input-field w-32" 
+              className="input-ghost w-full" 
               value={budget}
               onChange={(e) => setBudget(parseFloat(e.target.value) || 0)}
             />
           </div>
         </div>
         {summary && (
-          <div className="mt-3">
-            <div className="flex justify-between text-sm mb-1">
+          <div className="mt-4 space-y-2">
+            <div className="flex justify-between text-sm">
               <span className="text-gray-400">Spent</span>
               <span className="text-white">${summary.total_expense} / ${budget}</span>
             </div>
-            <div className="h-2 bg-navy-600 rounded-full">
+            <div className="h-2 bg-navy-700 rounded-full overflow-hidden">
               <div 
                 className={`h-2 rounded-full ${summary.total_expense > budget ? 'bg-red-500' : summary.total_expense > budget * 0.8 ? 'bg-yellow-500' : 'bg-green-500'}`}
                 style={{width: `${Math.min((summary.total_expense / budget) * 100, 100)}%`}}

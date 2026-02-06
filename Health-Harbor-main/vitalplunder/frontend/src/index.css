@@ -90,6 +90,26 @@
   .metric-card {
     @apply bg-navy-700/50 rounded-lg p-4 border border-navy-600;
   }
+
+  .glass-panel {
+    @apply bg-navy-800/80 backdrop-blur-xl rounded-2xl border border-white/5 shadow-2xl shadow-black/30;
+  }
+
+  .input-tile {
+    @apply rounded-xl border border-navy-600/70 bg-navy-800/70 p-4 transition-all duration-200 hover:-translate-y-0.5 hover:border-teal-500/50 hover:shadow-lg hover:shadow-teal-900/30;
+  }
+
+  .input-ghost {
+    @apply w-full mt-3 bg-transparent border border-navy-600 rounded-lg px-3 py-2 text-white placeholder-gray-500 focus:outline-none focus:border-teal-500 focus:ring-1 focus:ring-teal-500;
+  }
+
+  .icon-pill {
+    @apply w-10 h-10 rounded-lg bg-navy-700/70 border border-navy-600/80 flex items-center justify-center text-teal-300;
+  }
+
+  .range-chip {
+    @apply px-3 py-1 text-xs rounded-full bg-teal-500/10 text-teal-300 border border-teal-500/30 whitespace-nowrap;
+  }
 }
 
 /* Pirate themed header font */
