@@ -1,0 +1,53 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "backend: dev",
+      "type": "shell",
+      "command": "${workspaceFolder}/Health-Harbor-main/.venv/Scripts/python.exe",
+      "args": ["app.py"],
+      "options": {
+        "cwd": "${workspaceFolder}/Health-Harbor-main/vitalplunder/backend"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "frontend: dev",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev", "--", "--host"],
+      "options": {
+        "cwd": "${workspaceFolder}/Health-Harbor-main/vitalplunder/frontend"
+      },
+      "isBackground": true,
+      "problemMatcher": []
+    },
+    {
+      "label": "dev: both",
+      "dependsOn": ["backend: dev", "frontend: dev"],
+      "dependsOrder": "parallel",
+      "problemMatcher": []
+    },
+    {
+      "label": "backend: install",
+      "type": "shell",
+      "command": "${workspaceFolder}/Health-Harbor-main/.venv/Scripts/python.exe",
+      "args": ["-m", "pip", "install", "-r", "requirements.txt"],
+      "options": {
+        "cwd": "${workspaceFolder}/Health-Harbor-main/vitalplunder/backend"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "frontend: install",
+      "type": "shell",
+      "command": "npm",
+      "args": ["install"],
+      "options": {
+        "cwd": "${workspaceFolder}/Health-Harbor-main/vitalplunder/frontend"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

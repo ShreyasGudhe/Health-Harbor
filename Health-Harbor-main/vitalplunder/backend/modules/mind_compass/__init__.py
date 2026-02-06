@@ -1,0 +1,1 @@
+# Mind Compass Module Package

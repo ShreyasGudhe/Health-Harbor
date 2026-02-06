@@ -1,0 +1,40 @@
+# VitalPlunder Backend Requirements
+# ==================================
+
+# Flask Framework
+flask>=3.0.0
+flask-cors>=4.0.0
+
+# Machine Learning
+scikit-learn>=1.3.0
+pandas>=2.0.0
+numpy>=1.24.0
+joblib>=1.3.0
+
+# NLP & Sentiment Analysis
+textblob==0.17.1
+nltk==3.8.1
+
+# Image Processing
+# NOTE: Avoid strict pinning here because older Pillow wheels may not exist for
+# newer Python versions (e.g., 3.13), causing pip to attempt a source build.
+Pillow>=10.1.0
+
+# OCR for Medical Documents
+pytesseract==0.3.10
+
+# Google Gemini API
+google-generativeai==0.3.1
+
+# Environment Variables
+python-dotenv==1.0.0
+
+# PDF Processing
+PyPDF2==3.0.1
+pdf2image==1.16.3
+
+# Data Validation
+marshmallow==3.20.1
+
+# Utilities
+requests==2.31.0

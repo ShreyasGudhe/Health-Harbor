@@ -1,0 +1,21 @@
+text,stress_level,mood
+"Feeling great today, had a wonderful morning walk and spent time with family",steady,happy
+"Life is good, enjoying my hobbies and staying active",steady,content
+"Grateful for another beautiful day, feeling at peace",steady,peaceful
+"Had a productive day at work, accomplished my goals",steady,accomplished
+"Work has been quite busy lately, feeling some pressure",drifting,stressed
+"Having trouble sleeping, feeling a bit anxious",drifting,anxious
+"Feeling tired from the week, need some rest",drifting,tired
+"Dealing with some challenges but managing okay",drifting,neutral
+"Completely overwhelmed with everything going on",overboard,distressed
+"Can't cope with all the stress anymore",overboard,desperate
+"Feeling burned out and exhausted",overboard,exhausted
+"Having panic attacks frequently, can't relax",overboard,panicked
+"Started meditation, feeling more centered",steady,calm
+"Great workout this morning, endorphins are flowing",steady,energized
+"Spent quality time with friends, feeling connected",steady,happy
+"Work deadline approaching, feeling the pressure",drifting,worried
+"Argument with family member, feeling upset",drifting,upset
+"Financial worries keeping me up at night",drifting,anxious
+"Everything feels hopeless right now",overboard,hopeless
+"Breaking down from all the responsibilities",overboard,overwhelmed
