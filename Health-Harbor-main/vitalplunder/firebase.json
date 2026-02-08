@@ -1,0 +1,19 @@
+{
+  "hosting": {
+    "public": "frontend/dist",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "/api/**",
+        "run": {
+          "serviceId": "vitalplunder-api",
+          "region": "us-central1"
+        }
+      }
+    ]
+  }
+}

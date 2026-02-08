@@ -12,7 +12,7 @@ Date: January 2026
 """
 
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from dotenv import load_dotenv
 
@@ -27,6 +27,7 @@ from modules.supply_check.routes import supply_check_bp
 from modules.night_watch.routes import night_watch_bp
 from modules.galley_log.routes import galley_log_bp
 from modules.ship_doctor.routes import ship_doctor_bp
+from modules.firebase_client import require_firebase_user
 
 # New productivity modules
 from modules.treasure_ledger.routes import treasure_ledger_bp
@@ -133,6 +134,18 @@ def create_app():
         return jsonify({
             'status': 'healthy',
             'message': 'All systems operational, Captain!'
+        })
+
+    @app.route('/api/secure/ping')
+    @require_firebase_user
+    def secure_ping():
+        """
+        Example protected route using Firebase ID token (Bearer token required)
+        """
+        return jsonify({
+            'status': 'ok',
+            'uid': request.firebase_user.get('uid'),
+            'email': request.firebase_user.get('email')
         })
     
     # ==========================================

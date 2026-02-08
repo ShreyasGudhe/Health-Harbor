@@ -242,7 +242,22 @@ FLASK_ENV=development
 FLASK_DEBUG=True
 SECRET_KEY=your-secret-key-here
 GEMINI_API_KEY=your-gemini-api-key  # Optional, for Ship Doctor
+DATABASE_URL=postgresql://user:password@host:5432/database
+CAPTAINS_LOG_TABLE_NAME=captains_log_entries
+# Optional Firebase Admin SDK path if you need auth-protected routes
+FIREBASE_CREDENTIALS_PATH=D:/secure/path/health-harbor-admin.json
 ```
+
+### PostgreSQL Storage
+
+Captain's Log now persists to PostgreSQL (Neon, Supabase, Timescale, local, etc.) whenever `DATABASE_URL` is set. Otherwise it falls back to the legacy JSON file.
+
+1. Provision a Postgres instance (e.g., [Neon.tech free tier](https://neon.tech/)).
+2. Copy the connection string (looks like `postgresql://user:pass@host/db?sslmode=require`).
+3. Paste it into `DATABASE_URL` in `backend/.env` and restart `python app.py`.
+4. Optional: override the table name via `CAPTAINS_LOG_TABLE_NAME`.
+
+`modules/database.py` exposes a shared SQLAlchemy engine/session so any module can reuse the same database connection for their data.
 
 ### Training Models
 

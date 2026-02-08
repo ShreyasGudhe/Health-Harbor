@@ -9,8 +9,8 @@
 
 import axios from 'axios';
 
-// Base API URL - uses proxy in development
-const API_BASE = '/api';
+// Base API URL; defaults to relative /api proxy for dev
+const API_BASE = import.meta.env.VITE_API_BASE_URL || '/api';
 
 // Create axios instance with default config
 const api = axios.create({
