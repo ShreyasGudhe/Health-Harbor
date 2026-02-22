@@ -45,3 +45,6 @@ firebase-admin==6.6.0
 # Database
 SQLAlchemy>=2.0.25
 psycopg2-binary>=2.9.9
+
+# Production Server
+gunicorn>=21.2.0

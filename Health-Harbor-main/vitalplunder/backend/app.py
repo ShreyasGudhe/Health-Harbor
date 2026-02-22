@@ -58,11 +58,19 @@ def create_app():
     # ==========================================
     # Enable CORS for React frontend
     # ==========================================
+    # Get allowed origins from environment or use defaults
+    allowed_origins = os.getenv('ALLOWED_ORIGINS', '').split(',') if os.getenv('ALLOWED_ORIGINS') else [
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "https://*.vercel.app"  # Allow all Vercel deployments
+    ]
+    
     CORS(app, resources={
         r"/api/*": {
-            "origins": ["http://localhost:3000", "http://localhost:5173"],
+            "origins": allowed_origins + ["https://*.vercel.app"],
             "methods": ["GET", "POST", "PUT", "DELETE"],
-            "allow_headers": ["Content-Type", "Authorization"]
+            "allow_headers": ["Content-Type", "Authorization"],
+            "supports_credentials": True
         }
     })
     

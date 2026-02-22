@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: health-harbor-backend
+    env: python
+    region: singapore
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+      python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('vader_lexicon'); nltk.download('brown')"
+    startCommand: gunicorn -b 0.0.0.0:$PORT app:create_app()
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_DEBUG
+        value: False
+      - key: DATABASE_URL
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: FIREBASE_CREDENTIALS_PATH
+        sync: false
+      - key: CAPTAINS_LOG_TABLE_NAME
+        value: captains_log_entries
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    autoDeploy: true
+    healthCheckPath: /api/storm-watch/
