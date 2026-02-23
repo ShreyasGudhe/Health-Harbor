@@ -14,5 +14,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Cloud Run provides PORT
-CMD ["gunicorn", "-b", "0.0.0.0:${PORT}", "app:create_app()"]
+# Download required NLTK data
+RUN python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords'); nltk.download('vader_lexicon'); nltk.download('brown')"
+
+# Render provides PORT environment variable
+CMD gunicorn -b 0.0.0.0:$PORT app:create_app()
