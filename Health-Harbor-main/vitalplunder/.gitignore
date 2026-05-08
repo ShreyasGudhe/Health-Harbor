@@ -30,7 +30,7 @@ env/
 .venv/
 
 # ML Models
-*.pkl
+# *.pkl  # Uncomment if you don't want to commit model files
 *.h5
 *.model
 *.joblib
